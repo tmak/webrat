@@ -93,18 +93,19 @@ module Webrat
     # Allows setting of webrat's mode, valid modes are:
     # :rails, :selenium, :rack, :sinatra, :mechanize, :merb
     def mode=(mode)
-      @mode = mode.to_sym
+      mode = mode.to_sym
 
-      if [:rails, :merb, :sinatra].include?(@mode) && @application_framework.nil?
+      if [:rails, :merb, :sinatra].include?(mode) && @application_framework.nil?
         warn "Please use the option application_framework to set the framework which the application to be tested use."
-        self.application_framework = @mode
+        self.application_framework = mode
         return
       end
 
       unless Webrat.application_framework_handler.supported_modes.include?(mode)
         raise WebratError.new("The mode #{mode.inspect} is not supported by #{@application_framework.inspect}")
       end
-      
+
+      @mode = mode
       require("webrat/modes/#{mode}")
     end
 
