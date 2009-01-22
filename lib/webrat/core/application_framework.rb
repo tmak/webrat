@@ -3,10 +3,10 @@ module Webrat
     case Webrat.configuration.application_framework
     when :rails
       RailsHandler
-#    when :merb
-#      MerbHandler
-#    when :sinatra
-#      SinatraHandler
+    when :merb
+      MerbHandler
+    when :sinatra
+      SinatraHandler
     else
       raise WebratError.new(<<-STR)
 Unknown application framework: #{Webrat.configuration.application_framework.inspect}
