@@ -102,9 +102,9 @@ module Webrat
       # with Merb 1.0.8 until it's updated to use the new Webrat.configure
       # syntax
       if @mode == :merb
-        require("webrat/merb_session")
+        require("webrat/modes/merb_session")
       else
-        require("webrat/#{mode}")
+        require("webrat/modes/#{mode}")
       end
     end
 

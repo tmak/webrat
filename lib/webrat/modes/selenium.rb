@@ -1,8 +1,8 @@
 require "webrat"
 gem "selenium-client", ">=1.2.9"
 require "selenium/client"
-require "webrat/selenium/selenium_session"
-require "webrat/selenium/matchers"
+require "webrat/modes/selenium/selenium_session"
+require "webrat/modes/selenium/matchers"
 
 module Webrat
 
@@ -15,7 +15,7 @@ module Webrat
   def self.start_selenium_server #:nodoc:
     unless Webrat.configuration.selenium_server_address
       remote_control = ::Selenium::RemoteControl::RemoteControl.new("0.0.0.0", Webrat.configuration.selenium_server_port, 5)
-      remote_control.jar_file = File.expand_path(__FILE__ + "../../../../vendor/selenium-server.jar")
+      remote_control.jar_file = File.expand_path(__FILE__ + "../../../../../vendor/selenium-server.jar")
       remote_control.start :background => true
     end
     TCPSocket.wait_for_service :host => (Webrat.configuration.selenium_server_address || "0.0.0.0"), :port => Webrat.configuration.selenium_server_port
