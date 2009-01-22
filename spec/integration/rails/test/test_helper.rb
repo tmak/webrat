@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 require "redgreen"
 
-require File.dirname(__FILE__) + "/../../../../lib/webrat"
+require File.dirname(__FILE__) + "/../../../../lib/webrat/rails"
 
 Webrat.configure do |config|
   config.mode = ENV['WEBRAT_INTEGRATION_MODE'].to_sym

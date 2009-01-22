@@ -4,11 +4,7 @@ require "redgreen"
 require "sinatra"
 require File.dirname(__FILE__) + "/../app"
 
-require File.dirname(__FILE__) + "/../../../../lib/webrat"
-
-Webrat.configure do |config|
-  config.mode = :sinatra
-end
+require File.dirname(__FILE__) + "/../../../../lib/webrat/sinatra"
 
 class Test::Unit::TestCase
   include Webrat::Methods

@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/../../../../../lib/webrat"
+require File.dirname(__FILE__) + "/../../../../../lib/webrat/merb"
 
 Merb.logger.info("Loaded TEST Environment...")
 Merb::Config.use { |c|
