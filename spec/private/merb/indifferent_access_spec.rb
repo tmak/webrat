@@ -1,5 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + "/../../spec_helper")
 
+require "webrat/modes/merb"
+
 describe HashWithIndifferentAccess do
   it "should not update constructor when not a hash" do
     HashWithIndifferentAccess.should_receive(:update).never

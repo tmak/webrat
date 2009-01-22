@@ -1,9 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
-require "webrat/mechanize"
+require "webrat/modes/mechanize"
 
 describe Webrat::MechanizeSession do
   before :each do
+    Webrat.configuration.application_framework = :merb
     Webrat.configuration.mode = :mechanize
   end
 

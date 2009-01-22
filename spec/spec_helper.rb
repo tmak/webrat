@@ -46,5 +46,5 @@ Spec::Runner.configure do |config|
 end
 
 Webrat.configure do |config|
-  config.mode = :merb
+  config.application_framework = :merb
 end

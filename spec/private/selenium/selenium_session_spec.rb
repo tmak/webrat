@@ -1,9 +1,13 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 require "action_controller"
 require "action_controller/integration"
-require "webrat/selenium"
+require "webrat/modes/selenium"
 
 describe Webrat::SeleniumSession do
+  before :each do
+    Webrat.configuration.application_framework = :merb
+    Webrat.configuration.mode = :selenium
+  end
 
   describe "create browser" do
 

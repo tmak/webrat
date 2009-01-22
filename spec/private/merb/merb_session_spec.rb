@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/../../spec_helper")
 
-require "webrat/merb"
+require "webrat/modes/rails"
 
 describe Webrat::MerbSession do
   it "should not pass empty params if data is and empty hash" do

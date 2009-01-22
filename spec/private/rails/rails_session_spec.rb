@@ -1,10 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
-require "webrat/rails"
+require "webrat/modes/rails"
 
 describe Webrat::RailsSession do
   before :each do
-    Webrat.configuration.mode = :rails
+    Webrat.configuration.application_framework = :rails
     @integration_session = mock("integration_session")
   end
 
