@@ -23,6 +23,9 @@ module Webrat
     # Should XHTML be parsed with Nokogiri? Defaults to true, except on JRuby. When false, Hpricot and REXML are used
     attr_writer :parse_with_nokogiri
 
+    # Which framework does the application to be tested use.
+    attr_reader :application_framework
+    
     # Webrat's mode, set automatically when requiring webrat/rails, webrat/merb, etc.
     attr_reader :mode # :nodoc:
 
@@ -69,10 +72,21 @@ module Webrat
       @open_error_files ? true : false
     end
 
+    # Allows setting of the framework that is used by the application to be tested, valid application framework are:
+    # :rails, :merb, :sinatra
+    def application_framework=(application_framework)
+      @application_framework = application_framework.to_sym
+      require("webrat/application_frameworks/#{application_framework}")
+    end
+    
     # Allows setting of webrat's mode, valid modes are:
     # :rails, :selenium, :rack, :sinatra, :mechanize, :merb
     def mode=(mode)
       @mode = mode.to_sym
+
+      if [:rails, :merb, :sinatra].include?(@mode) && @application_framework.nil?
+        warn "Please use the option application_framework to set the framework which the application to be tested use."
+      end
       
       # This is a temporary hack to support backwards compatibility
       # with Merb 1.0.8 until it's updated to use the new Webrat.configure

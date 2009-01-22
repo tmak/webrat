@@ -25,17 +25,6 @@ module Webrat
     ::Selenium::RemoteControl::RemoteControl.new("0.0.0.0", Webrat.configuration.selenium_server_port, 5).stop unless Webrat.configuration.selenium_server_address
   end
 
-  def self.start_app_server #:nodoc:
-    pid_file = File.expand_path(RAILS_ROOT + "/tmp/pids/mongrel_selenium.pid")
-    system("mongrel_rails start -d --chdir=#{RAILS_ROOT} --port=#{Webrat.configuration.application_port} --environment=#{Webrat.configuration.application_environment} --pid #{pid_file} &")
-    TCPSocket.wait_for_service :host => Webrat.configuration.application_address, :port => Webrat.configuration.application_port.to_i
-  end
-
-  def self.stop_app_server #:nodoc:
-    pid_file = File.expand_path(RAILS_ROOT + "/tmp/pids/mongrel_selenium.pid")
-    system "mongrel_rails stop -c #{RAILS_ROOT} --pid #{pid_file}"
-  end
-
   # To use Webrat's Selenium support, you'll need the selenium-client gem installed.
   # Activate it with (for example, in your <tt>env.rb</tt>):
   #

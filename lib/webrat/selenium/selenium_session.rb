@@ -182,7 +182,7 @@ module Webrat
     def setup #:nodoc:
       silence_stream(STDOUT) do
         Webrat.start_selenium_server
-        Webrat.start_app_server
+        Webrat.application_framework_handler.start_app_server
       end
 
       create_browser
@@ -205,7 +205,7 @@ module Webrat
       at_exit do
         silence_stream(STDOUT) do
           $browser.stop
-          Webrat.stop_app_server
+          Webrat.application_framework_handler.stop_app_server
           Webrat.stop_selenium_server
         end
       end
