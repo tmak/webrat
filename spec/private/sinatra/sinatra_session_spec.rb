@@ -1,8 +1,8 @@
-require File.expand_path(File.dirname(__FILE__) + '/helper')
+require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Webrat::SinatraSession, "API" do
   before :each do
-    Webrat.configuration.mode = :sinatra
+    Webrat.configuration.application_framework = :sinatra
     @sinatra_session = Webrat::SinatraSession.new
   end
 
