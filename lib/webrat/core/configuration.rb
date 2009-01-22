@@ -26,9 +26,6 @@ module Webrat
     # Which framework does the application to be tested use.
     attr_reader :application_framework
     
-    # Webrat's mode, set automatically when requiring webrat/rails, webrat/merb, etc.
-    attr_reader :mode # :nodoc:
-
     # Save and open pages with error status codes (500-599) in a browser? Defualts to true.
     attr_writer :open_error_files
 
@@ -78,6 +75,12 @@ module Webrat
       @application_framework = application_framework.to_sym
       require("webrat/application_frameworks/#{application_framework}")
       self.mode = Webrat.application_framework_handler.default_mode
+    end
+
+    # Webrat's mode, set automatically to the default mode of the framework that is used by the application to be tested
+    def mode
+      self.mode = Webrat.application_framework_handler.default_mode if @mode.nil?
+      @mode
     end
     
     # Allows setting of webrat's mode, valid modes are:
