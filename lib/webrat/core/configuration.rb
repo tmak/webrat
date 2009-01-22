@@ -77,7 +77,6 @@ module Webrat
     def application_framework=(application_framework)
       @application_framework = application_framework.to_sym
       require("webrat/application_frameworks/#{application_framework}")
-      self.mode = Webrat.application_framework_handler.default_mode
     end
 
     def test_framework
