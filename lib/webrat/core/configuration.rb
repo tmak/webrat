@@ -106,14 +106,7 @@ module Webrat
         raise WebratError.new("The mode #{mode.inspect} is not supported by #{@application_framework.inspect}")
       end
       
-      # This is a temporary hack to support backwards compatibility
-      # with Merb 1.0.8 until it's updated to use the new Webrat.configure
-      # syntax
-      if @mode == :merb
-        require("webrat/modes/merb_session")
-      else
-        require("webrat/modes/#{mode}")
-      end
+      require("webrat/modes/#{mode}")
     end
 
   end
