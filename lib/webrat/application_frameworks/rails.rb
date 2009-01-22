@@ -7,7 +7,7 @@ module Webrat
     def initialize # :nodoc:
       @default_test_framework = :test_unit
       @default_mode = :rails
-      @supported_modes= [:rails, :selenium]
+      @supported_modes= [:rails, :mechanize, :selenium]
     end
 
     def start_app_server #:nodoc:

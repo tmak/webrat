@@ -7,7 +7,7 @@ module Webrat
     def initialize # :nodoc:
       @default_test_framework = :test_unit
       @default_mode = :sinatra
-      @supported_modes= [:sinatra, :selenium]
+      @supported_modes= [:sinatra, :mechanize, :selenium]
     end
   end
 end

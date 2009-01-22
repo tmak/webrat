@@ -7,7 +7,7 @@ module Webrat
     def initialize # :nodoc:
       @default_test_framework = :rspec
       @default_mode = :merb
-      @supported_modes= [:merb, :selenium]
+      @supported_modes= [:merb, :mechanize, :selenium]
     end
   end
 end
