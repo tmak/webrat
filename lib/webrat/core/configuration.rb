@@ -81,7 +81,7 @@ module Webrat
     end
 
     def test_framework
-      self.test_framework = Webrat.web_framework_handler.default_test_framework if @test_framework.nil?
+      self.test_framework = Webrat.application_framework_handler.default_test_framework if @test_framework.nil?
       @test_framework
     end
 
