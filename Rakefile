@@ -139,7 +139,7 @@ namespace :spec do
     task :sinatra do
       Dir.chdir "spec/integration/sinatra" do
         result = system "rake test"
-        raise "Sinatra tntegration tests failed" unless result
+        raise "Sinatra integration tests failed" unless result
       end
     end
   end
