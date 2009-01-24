@@ -1,5 +1,11 @@
 == Git
 
+* Major enhancements
+
+  * Use framework specific modules for the default setup (e.g. require "webrat/rails") (Thomas Marek)
+  * Add the configuration option application_framework (This option is mandatory) (Thomas Marek)
+  * Add the configuration option test_framework (Thomas Marek)
+
 * Minor enhancements
 
   * have_tag and the corresponding asserts work outside of merb, including selenium mode. (Amos King) 
