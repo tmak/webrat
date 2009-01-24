@@ -33,3 +33,20 @@ task :default => 'spec'
 # ADD YOUR CUSTOM TASKS IN /lib/tasks
 # NAME YOUR RAKE FILES file_name.rake
 ##############################################################################
+
+namespace :rspec do
+  desc "runs the rspec based tests in webrat mode"
+  task :merb do
+    ENV['WEBRAT_INTEGRATION_MODE'] = 'merb'
+    Rake::Task['spec:default'].execute
+  end
+
+  desc "runs the rspec based tests in selenium mode"
+  task :selenium do
+    ENV['WEBRAT_INTEGRATION_MODE'] = 'selenium'
+    Rake::Task['spec:default'].execute
+  end
+
+  desc "run both selenium and merb mode rspec suites"
+  task :all => [:merb, :selenium]
+end

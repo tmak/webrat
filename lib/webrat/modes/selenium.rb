@@ -1,6 +1,7 @@
 require "webrat"
 gem "selenium-client", ">=1.2.9"
 require "selenium/client"
+require "webrat/core_extensions/silence_stream"
 require "webrat/modes/selenium/selenium_session"
 require "webrat/modes/selenium/matchers"
 
@@ -74,10 +75,19 @@ module Webrat
   end
 end
 
-module ActionController #:nodoc:
-  IntegrationTest.class_eval do
-    include Webrat::Methods
-    include Webrat::Selenium::Methods
-    include Webrat::Selenium::Matchers
+#FIXME: Bad place for that?!
+if Webrat.configuration.test_framework == :test_unit
+  module ActionController #:nodoc:
+    IntegrationTest.class_eval do
+      include Webrat::Methods
+      include Webrat::Selenium::Methods
+      include Webrat::Selenium::Matchers
+    end
   end
+elsif Webrat.configuration.test_framework == :rspec
+  Spec::Runner.configure do |config|
+    config.include(Webrat::Methods)
+    config.include(Webrat::Selenium::Methods)
+    config.include(Webrat::Selenium::Matchers)
+   end
 end

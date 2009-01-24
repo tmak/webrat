@@ -128,10 +128,21 @@ namespace :spec do
     end
 
     desc "Run the Merb integration specs"
-    task :merb do
-      Dir.chdir "spec/integration/merb" do
-        result = system "rake spec"
-        raise "Merb integration tests failed" unless result
+    task :merb => ['merb:webrat','merb:selenium']
+
+    namespace :merb do
+      task :selenium do
+        Dir.chdir "spec/integration/merb" do
+          result = system "rake rspec:selenium"
+          raise "Merb integration tests failed" unless result
+        end
+      end
+
+      task :webrat do
+        Dir.chdir "spec/integration/merb" do
+          result = system "rake rspec:merb"
+          raise "Merb integration tests failed" unless result
+        end
       end
     end
 

@@ -20,5 +20,5 @@ Spec::Runner.configure do |config|
 end
 
 Webrat.configure do |config|
-  config.mode = :merb
+  config.mode = ENV['WEBRAT_INTEGRATION_MODE'].to_sym
 end
